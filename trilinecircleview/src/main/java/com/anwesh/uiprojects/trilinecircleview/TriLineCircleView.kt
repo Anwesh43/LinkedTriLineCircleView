@@ -226,4 +226,13 @@ class TriLineCircleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : TriLineCircleView {
+            val view : TriLineCircleView = TriLineCircleView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
