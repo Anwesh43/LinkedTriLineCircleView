@@ -12,6 +12,7 @@ import android.graphics.Color
 import android.graphics.RectF
 import android.app.Activity
 import android.content.Context
+import android.content.pm.ActivityInfo
 
 val nodes : Int = 5
 val lines : Int = 3
@@ -23,6 +24,7 @@ val foreColor : Int = Color.parseColor("#673AB7")
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rotDeg : Float = 90f
 val triSizeFactor : Float = 0.66f
+val delay : Long = 20
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -115,7 +117,7 @@ class TriLineCircleView(ctx : Context) : View(ctx) {
             if (animated) {
                 cb()
                 try {
-                    Thread.sleep(50)
+                    Thread.sleep(delay)
                     view.invalidate()
                 } catch(ex : Exception) {
 
@@ -231,6 +233,7 @@ class TriLineCircleView(ctx : Context) : View(ctx) {
 
         fun create(activity : Activity) : TriLineCircleView {
             val view : TriLineCircleView = TriLineCircleView(activity)
+            activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
             activity.setContentView(view)
             return view
         }
