@@ -203,4 +203,26 @@ class TriLineCircleView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : TriLineCircleView) {
+
+        private val animator : Animator = Animator(view)
+        private val tlc : TriLineCircle = TriLineCircle(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            tlc.draw(canvas, paint)
+            animator.animate {
+                tlc.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            tlc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
