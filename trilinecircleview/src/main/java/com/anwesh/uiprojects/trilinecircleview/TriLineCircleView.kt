@@ -171,7 +171,7 @@ class TriLineCircleView(ctx : Context) : View(ctx) {
         }
 
         fun getNext(dir : Int, cb : () -> Unit) : TLCNode {
-            var curr : TLCNode? = null
+            var curr : TLCNode? = prev
             if (dir == 1) {
                 curr = next
             }
